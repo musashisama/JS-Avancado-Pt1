@@ -16,7 +16,7 @@
         <div class="form-group">
             <label for="data">Data</label>
             <input type="date" id="data" class="form-control" required autofocus/>        
-        </div>    
+        </div>
         
         <div class="form-group">
             <label for="quantidade">Quantidade</label>
@@ -63,6 +63,16 @@
     <script src="js/app/helpers/DateHelper.js"></script>
     <script src="js/app/models/ListaNegociacoes.js"></script>
     <script>
+        let hoje = new Date();
+
+        let n1 = new Negociacao(hoje, 5, 700);
+
+        console.log(n1.data);
+
+        hoje.setDate(11);
+
+        console.log(n1.data);
+
         let negociacaoController = new NegociacaoController();
     </script>
 </body>
