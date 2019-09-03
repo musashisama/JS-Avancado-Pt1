@@ -1,0 +1,7 @@
+#data, #quantidade, #valor {
+    width: 140px;
+}
+
+#tdTotal {
+    text-align: right;
+}
