@@ -43,6 +43,7 @@ class NegociacaoService {
 
     obterNegociacoesDaSemanaAnterior(callback) {
 
+        return new Promise((resolve, reject)=>{
         let xhr = new XMLHttpRequest();
 
         xhr.open('GET','negociacoes/anterior');            
@@ -58,7 +59,7 @@ class NegociacaoService {
            if(xhr.readyState==4){
                if(xhr.status==200){
                    
-               callback(null,JSON.parse(xhr.responseText)
+               resolve(JSON.parse(xhr.responseText)
                .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
                //.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
                //this._mensagem.texto = "Negociações importadas com sucesso.";
@@ -66,7 +67,7 @@ class NegociacaoService {
                }else{                   
                    console.log(xhr.responseText);
                    //this._mensagem.texto = "Não foi possível obter as negociações da semana.";
-                   callback("Não foi possível obter as negociações da semana anterior.", null);
+                   reject("Não foi possível obter as negociações da semana anterior.");
 
                }
            }
@@ -74,10 +75,13 @@ class NegociacaoService {
         };
 
         xhr.send();
-    }
+    });
+
+}
 
     obterNegociacoesDaSemanaRetrasada(callback) {
 
+        return new Promise((resolve, reject)=>{
         let xhr = new XMLHttpRequest();
 
         xhr.open('GET','negociacoes/retrasada');
@@ -93,7 +97,7 @@ class NegociacaoService {
            if(xhr.readyState==4){
                if(xhr.status==200){
                    
-               callback(null,JSON.parse(xhr.responseText)
+               resolve(JSON.parse(xhr.responseText)
                .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)));
                //.forEach(negociacao => this._listaNegociacoes.adiciona(negociacao));
                //this._mensagem.texto = "Negociações importadas com sucesso.";
@@ -101,7 +105,7 @@ class NegociacaoService {
                }else{                   
                    console.log(xhr.responseText);
                    //this._mensagem.texto = "Não foi possível obter as negociações da semana.";
-                   callback("Não foi possível obter as negociações da semana retrasada.", null);
+                   reject("Não foi possível obter as negociações da semana retrasada.");
 
                }
            }
@@ -109,7 +113,9 @@ class NegociacaoService {
         };
 
         xhr.send();
+        });
     }
 
-    
+
+
 }
