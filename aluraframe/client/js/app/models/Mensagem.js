@@ -1,7 +1,13 @@
 class Mensagem {
 
-    constructor(texto='') {
+    /* constructor(texto='') {
         this._texto = texto;
+    } */
+
+    // DEIXOU DE RECEBER O PARÂMTRO OPCIONAL PARA FUNCIONAR NO EDGE
+    constructor(texto) {
+
+        this._texto = texto || ''; // se texto for undefined, vai passar ''
     }
 
     get texto() {
